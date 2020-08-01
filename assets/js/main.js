@@ -4,6 +4,7 @@ const alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p
 // secret letter var, to be assigned by function for each round:
 let secretLetter = '';
 let userGuess = '';
+let guessedLetters = [];
 let guessesLeft = 8;
 let winCount = 0;
 let lossCount = 0;
@@ -27,7 +28,7 @@ const newRound = () => {
                 console.log('You win!');
                 winCount++;
             } else {
-                console.log('You lose!');
+                guessedLetters.push(userGuess);
                 guessesLeft--;
             };
 
@@ -48,6 +49,7 @@ const letterSetter = () => {
 
 // set/update html elements to reflect stat values:
 const statUpdates = () => {
+    document.getElementById("guess-array").innerHTML = guessedLetters;
     document.getElementById("guesses-left").innerHTML = guessesLeft;
     document.getElementById("round-number").innerHTML = roundCount;
     document.getElementById("win-number").innerHTML = winCount;
