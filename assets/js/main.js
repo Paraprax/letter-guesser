@@ -6,7 +6,7 @@ let secretLetter = '';
 let userGuess = '';
 let winCount = 0;
 let lossCount = 0;
-let roundCount = 8;
+let roundCount = 0;
 
 //game initializing function:
 const newRound = () => {
@@ -37,9 +37,10 @@ const letterSetter = () => {
 }
 
 const statUpdates = () => {
-    let rounds = document.getElementById("round-number");
+   document.getElementById("round-number").innerHTML = roundCount;
+   document.getElementById("win-number").innerHTML = winCount;
+   document.getElementById("loss-number").innerHTML = lossCount;
 
-    console.log(rounds);
 }
 
 //start new round && update html stat elements on page load:
