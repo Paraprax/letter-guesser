@@ -29,23 +29,30 @@ const newRound = () => {
         //if the key is an actual letter(to prevent playing cmd, refresh, etc keys):
         if (alphabet.indexOf(event.key) != -1) {
 
-            //save the key value as the user's guess:
-            userGuess = event.key;
+            //only let the game be played if the user has guesses left, else start a new round:
+            if (guessesLeft > 0) {
+                //save the key value as the user's guess:
+                userGuess = event.key;
 
-            //evaluate the user's guess && update var values:
-            if (userGuess === secretLetter) {
-                //if the user guesses right, update the score and start a new round:
-                console.log('You win!');
-                winCount++;
+                //evaluate the user's guess && update var values:
+                if (userGuess === secretLetter) {
+                    //if the user guesses right, update the score and start a new round:
+                    console.log('You win!');
+                    winCount++;
+                    newRound();
+                } else {
+                    //if the user guesses wrong, add their guess to the guessed-letters array and reduce the number of guesses left by 1:
+                    guessedLetters.push(userGuess);
+                    guessesLeft--;
+                };
+
+                // update all the on-screen stats after each guess:
+                statUpdates();
+            }  else {
+                alert('You lose!');
+                lossCount++;
                 newRound();
-            } else {
-                //if the user guesses wrong, add their guess to the guessed-letters array and reduce the number of guesses left by 1:
-                guessedLetters.push(userGuess);
-                guessesLeft--;
-            };
-
-            // update all the on-screen stats after each guess:
-            statUpdates();
+            }       
         }
     }
 };
