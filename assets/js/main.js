@@ -4,21 +4,24 @@ const alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p
 // secret letter var, to be assigned by function for each round:
 let secretLetter = '';
 let userGuess = '';
+let winCount = 0;
+let lossCount = 0;
+let roundCount = 8;
 
 //game initializing function:
 const newRound = () => {
     letterSetter();
 
+    //grab the user's keypress as their letter guess
     document.onkeyup = function(event) {
         userGuess = event.key;
     
-
         if (userGuess === secretLetter) {
             console.log('You win!');
+
         } else {
             console.log('You lose!');
         };
-
     }
 
 };
@@ -33,6 +36,13 @@ const letterSetter = () => {
     return secretLetter;
 }
 
-//start new round on page load
+const statUpdates = () => {
+    let rounds = document.getElementById("round-number");
+
+    console.log(rounds);
+}
+
+//start new round && update html stat elements on page load:
 newRound();
+statUpdates();
 
