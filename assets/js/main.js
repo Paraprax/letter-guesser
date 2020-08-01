@@ -12,16 +12,21 @@ let roundCount = 0;
 const newRound = () => {
     letterSetter();
 
-    //grab the user's keypress as their letter guess
+    //whenever the user hits a key:
     document.onkeyup = function(event) {
-        userGuess = event.key;
-    
-        if (userGuess === secretLetter) {
-            console.log('You win!');
 
-        } else {
-            console.log('You lose!');
-        };
+        //if the key is an actual letter(to prevent playing cmd, refresh, etc keys):
+        if (alphabet.indexOf(event.key) != -1) {
+            userGuess = event.key;
+    
+            if (userGuess === secretLetter) {
+                console.log('You win!');
+                winCount++;
+            } else {
+                console.log('You lose!');
+                lossCount++;
+            };
+        }
     }
 
 };
@@ -40,7 +45,6 @@ const statUpdates = () => {
    document.getElementById("round-number").innerHTML = roundCount;
    document.getElementById("win-number").innerHTML = winCount;
    document.getElementById("loss-number").innerHTML = lossCount;
-
 }
 
 //start new round && update html stat elements on page load:
