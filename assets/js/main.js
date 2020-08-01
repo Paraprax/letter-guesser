@@ -3,6 +3,25 @@ const alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p
 
 // secret letter var, to be assigned by function for each round:
 let secretLetter = '';
+let userGuess = '';
+
+//game initializing function:
+const newRound = () => {
+    letterSetter();
+
+    document.onkeyup = function(event) {
+        userGuess = event.key;
+    
+
+        if (userGuess === secretLetter) {
+            console.log('You win!');
+        } else {
+            console.log('You lose!');
+        };
+
+    }
+
+};
 
 // computer picks a letter at beginning of round:
 const letterSetter = () => {
@@ -14,4 +33,6 @@ const letterSetter = () => {
     return secretLetter;
 }
 
-console.log(letterSetter());
+//start new round on page load
+newRound();
+
