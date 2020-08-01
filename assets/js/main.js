@@ -16,6 +16,12 @@ const newRound = () => {
     //available guesses are reset to full:
     guessesLeft = 8;
 
+    //guessed letters array is cleared:
+    guessedLetters = [];
+
+    //number of rounds is incremented:
+    roundCount++;
+
     //a new secret letter is chosen by the program:
     letterSetter();
 
